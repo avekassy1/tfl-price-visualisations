@@ -130,8 +130,8 @@ def dashboard() -> None:
         contruct_plot()
 
 def outro_text():
-    col_left, col_pad_right = st.columns(
-        [5.5+0.1+0.1+3, 1]
+    col_left, col_mid, col_pad_right = st.columns(
+        [5.5+0.1+0.1, 3, 1]
     )
     with col_left:
         st.subheader("Methodology")
@@ -143,11 +143,12 @@ def outro_text():
         price of the first available year is used as a starting point. This approach aims to provide an equitable basis for assessing the financial returns of a hypothetical investment—which is an \
         eloquant way of saying that the results are dismal even when the stocks are given the best chance.
                     
-        This project is open-source, with all code and data available on my GitHub -> [TfL-Price-Visualisations](https://github.com/avekassy1/tfl-price-visualisations).
+        This project is open-source, with all code and data available on my GitHub -> Repo: [TfL-Price-Visualisations](https://github.com/avekassy1/tfl-price-visualisations).
                     
         The dashboard was built with [Streamlit](https://streamlit.io/), is hosted by Streamlit's [Community Cloud](https://streamlit.io/cloud), 
         and the chart itself is powered by [Plotly](https://plotly.com/python/).
         """)
+    with col_mid:
         st.subheader("Data Sources")
         st.markdown("""
                     - [ONS Bus & Coach Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docx/mm23), 
