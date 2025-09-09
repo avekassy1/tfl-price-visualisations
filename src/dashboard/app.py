@@ -140,10 +140,12 @@ def outro_text():
         Each time the chart renders, all prices are normalised to a baseline index of 100 before plotting. 
 
         Where initial fare data is missing—for example, peak hour increases introduced in 2008—the highest stock 
-        price of the first available year is used as a starting point. This approach aims to provide an equitable basis for assessing the financial returns of a hypothetical investment—which is an \
+        price of the first available year is used as a starting point. 
+                    
+        This approach aims to provide an equitable basis for assessing the financial returns of a hypothetical investment—which is an \
         eloquant way of saying that the results are dismal even when the stocks are given the best chance.
                     
-        This project is open-source, with all code and data available on my GitHub -> Repo: [TfL-Price-Visualisations](https://github.com/avekassy1/tfl-price-visualisations).
+        This project is __open-source__, with all code and data available on my GitHub -> Repo: [TfL-Price-Visualisations](https://github.com/avekassy1/tfl-price-visualisations).
                     
         The dashboard was built with [Streamlit](https://streamlit.io/), is hosted by Streamlit's [Community Cloud](https://streamlit.io/cloud), 
         and the chart itself is powered by [Plotly](https://plotly.com/python/).
@@ -151,8 +153,8 @@ def outro_text():
     with col_mid:
         st.subheader("Data Sources")
         st.markdown("""
-                    - [ONS Bus & Coach Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docx/mm23), 
-        - [ONS Train Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docw/mm23),
+                    - [ONS Bus & Coach Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docx/mm23)
+        - [ONS Train Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docw/mm23)
         - [Wall Street Journal Market Data](https://www.wsj.com/market-data)
         - TfL fares data compiled by me with ❤️
         """)
