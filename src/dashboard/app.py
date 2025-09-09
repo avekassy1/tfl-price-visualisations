@@ -34,7 +34,7 @@ def intro_text():
 
         The result is an interactive dashboard which lets you select any period between 2000 and 2025 and compare up to {st.session_state.combined_fares.shape[1] - 1} 
         transport modes (shown as step lines) against {st.session_state.combined_stocks.shape[1] - 1} stock indices (shown as dashed lines). Further 
-        information on data sources and sourcecode is provided below. Hoppe you have fun!
+        information on data sources and sourcecode is provided below. Hope you have fun!
         """,
         unsafe_allow_html=True,)
     with col_right:
