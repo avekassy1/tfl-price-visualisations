@@ -17,18 +17,24 @@ def intro_text():
     with col_left:
         st.markdown(
         f"""
-        With London's Tube facing its ninth strike in three years, it seems timely to examine the rate at which fares—the cost borne by ordinary tapayers—have increased.
+        The year is 2025, and the world's 
+        [most expensive public transport](https://www.timeout.com/london/news/its-official-londons-public-transport-is-now-the-most-expensive-in-the-world-030525),
+        is on a strike—for the ninth time in just three years. 
+        
+        The reason? Wages, as usual, despite tube drivers earning £70,000 per annum—3.4 times the £20,780 stipend of a PhD student, 
+        and comfortably more than twice the UK's median salary. Still, making ends meet pushing buttons is apparently not so easy.
 
-        A natural comparator for the world's most expensive public transport system, I thought, is the FTSE 100, a benchmark for the UK economy. But to provide a broader image, other indeces 
-        such as DAX, Nikkei 225, and Hang Seng are available for comparison. Additionally, a range of TfL fares, average train, bus, and coach fares across the UK also feature in the analysis.
-        Bus and coach fares, in fact, performed so remarkably well, only the S&P 500 managed to surpass them—and only following the global pandemic.
+        With nowhere to go, I decided to examine the pace at which Transport for London (TfL) has been raising 
+        its fares. As a comparaor, I chose the FTSE 100, representing the wider UK economy. Later, I added the S&P500, Germany's 
+        DAX, Japan's Nikkei 225, and Hong Kong's Hang Seng.
+        
+        Alongside these indices, I included a range of TfL tickets and passes, as well as 
+        average train, bus, and coach fares across the UK. Remarkably, the latter performed so strongly that only the S&P 500 managed to outpace 
+        them—and that only after the global pandemic.
 
-        TfL is on strike, demanding better pay for its staff. Tube drivers reportedly earn £70,000 per annum, bringing home 3.4 times the £20,780 stipend awarded to a PhD student. 
-        By the looks of it, pushing buttons promises a brighter financial future than pursuing an academic career.
-
-        This interactive dashboard allows you to select any period between 2000 and 2025, and to compare up to {st.session_state.combined_fares.shape[1] - 1} transport modes
-        (displayed as step lines) against {st.session_state.combined_stocks.shape[1] - 1} stock indices (shown as dashed lines).
-
+        The result is an interactive dashboard which lets you select any period between 2000 and 2025 and compare up to {st.session_state.combined_fares.shape[1] - 1} 
+        transport modes (shown as step lines) against {st.session_state.combined_stocks.shape[1] - 1} stock indices (shown as dashed lines). Further 
+        information on data sources and sourcecode is provided below. Hoppe you have fun!
         """,
         unsafe_allow_html=True,)
     with col_right:
@@ -112,7 +118,7 @@ def dashboard() -> None:
         [5.5, 0.1, 0.1, 3, 1]
     )
     with col_right:
-        st.subheader("Selectors")
+        st.subheader("Filters")
         st.write("")
         st.write("")
         selectors()
@@ -124,21 +130,36 @@ def dashboard() -> None:
         contruct_plot()
 
 def outro_text():
-    st.markdown("""
-    **Data sources**
+    col_left, col_pad_right = st.columns(
+        [5.5+0.1+0.1+3, 1]
+    )
+    with col_left:
+        st.subheader("Methodology")
+        st.markdown("""
 
-    - [ONS Bus & Coach Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docx/mm23), 
-    - [ONS Train Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docw/mm23),
-    - [Wall Street Journal Market Data](https://www.wsj.com/market-data)
-    - TfL fares data compiled by me with ❤️
-                
-    **Methodology**  
+        Each time the chart renders, all prices are normalised to a baseline index of 100 before plotting. 
 
-    All prices are normalised to a baseline index of 100. Where initial fare data is missing—for example, peak hour increases introduced in 2008—the highest stock 
-    price of the first available year is used as a starting point. This approach aims to provide an equitable basis for assessing the financial returns of a hypothetical investment.
-                
-    This project is open-source with all code and data available on GitHub [TfL-Price_visualisations](https://github.com/avekassy1/tfl-price-visualisations)
-    """)
+        Where initial fare data is missing—for example, peak hour increases introduced in 2008—the highest stock 
+        price of the first available year is used as a starting point. This approach aims to provide an equitable basis for assessing the financial returns of a hypothetical investment—which is an \
+        eloquant way of saying that the results are dismal even when the stocks are given the best chance.
+                    
+        This project is open-source, with all code and data available on my GitHub -> [TfL-Price-Visualisations](https://github.com/avekassy1/tfl-price-visualisations).
+                    
+        The dashboard was built with [Streamlit](https://streamlit.io/), is hosted by Streamlit's [Community Cloud](https://streamlit.io/cloud), 
+        and the chart itself is powered by [Plotly](https://plotly.com/python/).
+        """)
+        st.subheader("Data Sources")
+        st.markdown("""
+                    - [ONS Bus & Coach Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docx/mm23), 
+        - [ONS Train Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docw/mm23),
+        - [Wall Street Journal Market Data](https://www.wsj.com/market-data)
+        - TfL fares data compiled by me with ❤️
+        """)
+        st.subheader("Contact")
+        st.markdown("""
+        If you liked this content or have any questions, please do not hesitate to reach out. Drop a message on [LinkedIn](https://www.linkedin.com/in/andras-vekassy/) or 
+        [Substack](https://andrasv8.substack.com/).
+        """)
 
 ############## DATA ##############
 DATA_DIR = Path(__file__).parents[2] / "data"
