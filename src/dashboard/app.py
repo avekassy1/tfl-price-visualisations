@@ -2,7 +2,9 @@ import streamlit as st
 import plotly.graph_objects as go
 from pathlib import Path
 import pandas as pd
+import os, sys
 
+sys.path.append(str(Path(__file__).resolve().parents[2]))
 from src.utils import LINE_AND_MARKER, comparison_plot
 
 
@@ -10,7 +12,7 @@ def intro_text():
     st.title("Fares & Shares: Tracking UK Transport Costs vs Markets")
     st.write("")
     col_left, col_mid, col_mid2, col_right, col_pad_right = st.columns(
-        [5, 0.1, 0.1, 3, 1]
+        [5.5, 0.1, 0.1, 3, 1]
     )
     with col_left:
         st.markdown(
@@ -31,12 +33,13 @@ def intro_text():
         """,
         unsafe_allow_html=True,)
     with col_right:
-        st.image(DATA_DIR / "sadiq-get-real.png", caption="Your caption here")
+        st.image(DATA_DIR / "sadiq-get-real.png", caption=" ")
+    st.write("")
 
 
 def selectors():
     # Define min and max dates with a slider
-
+    st.subheader("Selectors")
     start_year, end_year = st.slider("Year range", 2000, 2025, (2010, 2024))
     st.session_state.start_year, st.session_state.end_year = start_year, end_year
 
@@ -85,7 +88,7 @@ def contruct_plot():
             "Please select at least one stock index and one transportation mode to display the graph."
         )
 
-def divider_line():
+def vertical_divider_line():
     return st.markdown(
             """
         <div style="
@@ -105,13 +108,12 @@ def divider_line():
 
 def dashboard() -> None:
     col_left, col_mid, col_mid2, col_right, col_pad_right = st.columns(
-        [5, 0.1, 0.1, 3, 1]
+        [5.5, 0.1, 0.1, 3, 1]
     )
     with col_right:
         selectors()
-    # Vertical divider as HTML in a separate column
-    with col_mid:
-        divider_line()
+    # with col_mid:
+        # vertical_divider_line()
     with col_left:
         # Render the plot if there is at least one selection in each category
         contruct_plot()
