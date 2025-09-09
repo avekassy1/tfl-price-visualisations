@@ -1,4 +1,4 @@
-year,relative_bus_and_coach_fares,relative_rail_fares,singleZ1toZ4Cash,singleZ1toZ4OysterPeak,busCash,singleBusOyster,capBusTram,travelcardZ1toZ4,capZ1toZ4PAYG,travelcard7DayZ1toZ4,weeklyBusAndTramPass
+year,Bus_and_Coach,Rail,Single_Z1_to_Z4_Cash,Single_Z1_to_Z4_Oyster_Peak,Bus_Cash,Single_Bus_Oyster,Cap_Bus_Tram,Travelcard_Z1_to_Z4,Cap_Z1_to_Z4_PAYG,Travelcard_7_Day_Z1_to_Z4,Weekly_Bus_And_Tram_Pass
 2000,204.2,205.8,2.6,,1.0,,,,,26.8,11.5
 2001,212.8,213.7,2.7,,1.0,,,,,27.6,9.5
 2002,219.3,218.6,2.7,,1.0,,,6.8,,28.1,8.5
