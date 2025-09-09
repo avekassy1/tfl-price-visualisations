@@ -17,32 +17,32 @@ def intro_text():
     with col_left:
         st.markdown(
         f"""
-        This interactive dashboard compares transportation costs in the UK with well-known stock indices. You can select a start and end year between 2000 and 2025, 
-        and choose from {st.session_state.combined_fares.shape[1] - 1} transportation modes (step lines) and {st.session_state.combined_stocks.shape[1] - 1} stock 
-        indeces (dashed lines).<br><br> 
-        **Data sources**  
-        - [ONS Bus & Coach Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docx/mm23)
-        - [ONS Train Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docw/mm23)
-        - [Wall Street Journal Market Data](https://www.wsj.com/market-data)
-        - TfL Fares: collected by me with ❤️
+        With London's Tube facing its ninth strike in three years, it seems timely to examine the rate at which fares—the cost borne by ordinary tapayers—have increased.
 
-        **Methodology**  
-        Prices are normalised to the same starting point of 100. In case of initial missing values (increased fares for peak hours, for example, 
-        were introduced in 2008), the highest stock price in the first entry's year is used as a starting point. The idea is to provide a fair comparison for evaluating
-        the financial returns of a hypothetical investment.
+        A natural comparator for the world's most expensive public transport system, I thought, is the FTSE 100, a benchmark for the UK economy. But to provide a broader image, other indeces 
+        such as DAX, Nikkei 225, and Hang Seng are available for comparison. Additionally, a range of TfL fares, average train, bus, and coach fares across the UK also feature in the analysis.
+        Bus and coach fares, in fact, performed so remarkably well, only the S&P 500 managed to surpass them—and only following the global pandemic.
+
+        TfL is on strike, demanding better pay for its staff. Tube drivers reportedly earn £70,000 per annum, bringing home 3.4 times the £20,780 stipend awarded to a PhD student. 
+        By the looks of it, pushing buttons promises a brighter financial future than pursuing an academic career.
+
+        This interactive dashboard allows you to select any period between 2000 and 2025, and to compare up to {st.session_state.combined_fares.shape[1] - 1} transport modes
+        (displayed as step lines) against {st.session_state.combined_stocks.shape[1] - 1} stock indices (shown as dashed lines).
+
         """,
         unsafe_allow_html=True,)
     with col_right:
-        st.image(DATA_DIR / "sadiq-get-real.png", caption=" ")
+        st.image(DATA_DIR / "sadiq-get-real.png", caption="The Mayor of London, Sadiq Khan, who oversees TfL fare increases, declined to comment on the ongoing Tube strike.")
     st.write("")
 
 
 def selectors():
     # Define min and max dates with a slider
-    st.subheader("Selectors")
     start_year, end_year = st.slider("Year range", 2000, 2025, (2010, 2024))
     st.session_state.start_year, st.session_state.end_year = start_year, end_year
 
+    st.write("")
+    st.write("")
     selected_stocks = st.multiselect(
         "Stock indices",
         options=[
@@ -53,7 +53,8 @@ def selectors():
         default=["FTSE100"],
     )
     st.session_state.selected_stocks = selected_stocks
-
+    st.write("")
+    st.write("")
     selected_transport_modes = st.multiselect(
         "Transportation modes",
         options=[
@@ -111,12 +112,33 @@ def dashboard() -> None:
         [5.5, 0.1, 0.1, 3, 1]
     )
     with col_right:
+        st.subheader("Selectors")
+        st.write("")
+        st.write("")
         selectors()
     # with col_mid:
         # vertical_divider_line()
     with col_left:
+        st.subheader("Dashboard")
         # Render the plot if there is at least one selection in each category
         contruct_plot()
+
+def outro_text():
+    st.markdown("""
+    **Data sources**
+
+    - [ONS Bus & Coach Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docx/mm23), 
+    - [ONS Train Fares RPI](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/docw/mm23),
+    - [Wall Street Journal Market Data](https://www.wsj.com/market-data)
+    - TfL fares data compiled by me with ❤️
+                
+    **Methodology**  
+
+    All prices are normalised to a baseline index of 100. Where initial fare data is missing—for example, peak hour increases introduced in 2008—the highest stock 
+    price of the first available year is used as a starting point. This approach aims to provide an equitable basis for assessing the financial returns of a hypothetical investment.
+                
+    This project is open-source with all code and data available on GitHub [TfL-Price_visualisations](https://github.com/avekassy1/tfl-price-visualisations)
+    """)
 
 ############## DATA ##############
 DATA_DIR = Path(__file__).parents[2] / "data"
@@ -140,3 +162,4 @@ if __name__ == "__main__":
     init_session_state()
     intro_text()
     dashboard()
+    outro_text()
