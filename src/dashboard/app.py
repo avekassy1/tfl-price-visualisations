@@ -25,7 +25,7 @@ def intro_text():
         and comfortably more than twice the UK's median salary. Still, making ends meet pushing buttons is apparently not so easy.
 
         With nowhere to go, I decided to examine the pace at which Transport for London (TfL) has been raising 
-        its fares. As a comparaor, I chose the FTSE 100, representing the wider UK economy. Later, I added the S&P500, Germany's 
+        its fares. As a comparator, I chose the FTSE 100, representing the wider UK economy. Later, I added the S&P500, Germany's 
         DAX, Japan's Nikkei 225, and Hong Kong's Hang Seng.
         
         Alongside these indices, I included a range of TfL tickets and passes, as well as 
