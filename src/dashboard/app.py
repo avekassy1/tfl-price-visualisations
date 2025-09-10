@@ -16,16 +16,16 @@ def intro_text():
     )
     with col_left:
         st.markdown(
-        f"""
+            f"""
         The year is 2025, and the world's 
-        [most expensive public transport](https://www.timeout.com/london/news/its-official-londons-public-transport-is-now-the-most-expensive-in-the-world-030525),
+        [most expensive public transport](https://www.timeout.com/london/news/its-official-londons-public-transport-is-now-the-most-expensive-in-the-world-030525)
         is on a strike—for the ninth time in just three years. 
         
         The reason? Wages, as usual, despite tube drivers earning £70,000 per annum—3.4 times the £20,780 stipend of a PhD student, 
         and comfortably more than twice the UK's median salary. Still, making ends meet pushing buttons is apparently not so easy.
 
         With nowhere to go, I decided to examine the pace at which Transport for London (TfL) has been raising 
-        its fares. As a comparator, I chose the FTSE 100, representing the wider UK economy. Later, I added the S&P500, Germany's 
+        its fares. As a comparator, I chose the FTSE 100, representing the wider UK economy. Later, I added the S&P 500, Germany's 
         DAX, Japan's Nikkei 225, and Hong Kong's Hang Seng.
         
         Alongside these indices, I included a range of TfL tickets and passes, as well as 
@@ -36,9 +36,13 @@ def intro_text():
         transport modes (shown as step lines) against {st.session_state.combined_stocks.shape[1] - 1} stock indices (shown as dashed lines). Further 
         information on data sources and sourcecode is provided below. Hope you have fun!
         """,
-        unsafe_allow_html=True,)
+            unsafe_allow_html=True,
+        )
     with col_right:
-        st.image(DATA_DIR / "sadiq-get-real.png", caption="The Mayor of London, Sadiq Khan, who oversees TfL fare increases, declined to comment on the ongoing Tube strike.")
+        st.image(
+            DATA_DIR / "sadiq-get-real.png",
+            caption="The Mayor of London, Sadiq Khan, who oversees TfL fare increases, declined to comment on the ongoing Tube strike.",
+        )
     st.write("")
 
 
@@ -95,9 +99,10 @@ def contruct_plot():
             "Please select at least one stock index and one transportation mode to display the graph."
         )
 
+
 def vertical_divider_line():
     return st.markdown(
-            """
+        """
         <div style="
             height: 350px;
             display: flex;
@@ -110,8 +115,9 @@ def vertical_divider_line():
             "></div>
         </div>
         """,
-            unsafe_allow_html=True,
-        )
+        unsafe_allow_html=True,
+    )
+
 
 def dashboard() -> None:
     col_left, col_mid, col_mid2, col_right, col_pad_right = st.columns(
@@ -122,17 +128,15 @@ def dashboard() -> None:
         st.write("")
         st.write("")
         selectors()
-    # with col_mid:
-        # vertical_divider_line()
+
     with col_left:
         st.subheader("Dashboard")
         # Render the plot if there is at least one selection in each category
         contruct_plot()
 
+
 def outro_text():
-    col_left, col_mid, col_pad_right = st.columns(
-        [5.5+0.1+0.1, 3, 1]
-    )
+    col_left, col_mid, col_pad_right = st.columns([5.5 + 0.1 + 0.1, 3, 1])
     with col_left:
         st.subheader("Methodology")
         st.markdown("""
@@ -164,10 +168,12 @@ def outro_text():
         [Substack](https://andrasv8.substack.com/).
         """)
 
+
 ############## DATA ##############
 DATA_DIR = Path(__file__).parents[2] / "data"
 FARE_PRICES_DIR = DATA_DIR / "fares"
 STOCK_PRICES_DIR = DATA_DIR / "stocks"
+
 
 def init_session_state() -> None:
     st.set_page_config(layout="wide")
